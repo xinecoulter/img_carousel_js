@@ -45,3 +45,10 @@ body {
   right: 15px;
   left: auto;
 }
+
+#slideshow {
+  bottom: 15px;
+  top: auto;
+  right: 46.5%;
+  left: auto;
+}
