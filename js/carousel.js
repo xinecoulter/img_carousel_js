@@ -1,13 +1,15 @@
-var carousel = document.getElementById('carousel');
-
 // Buttons
 var next = document.getElementById('next');
 var previous = document.getElementById('previous');
+var slideshow = document.getElementById('slideshow');
 
 // Carousel-related things
+var carousel = document.getElementById('carousel');
 carousel.style.marginLeft = 0;
 var movePixels = 612;
 var numberOfImages = document.getElementsByTagName("img").length;
+var delayMs = 3000;
+var carouselTimer = null;
 
 function carouselForward() {
   var currentCarouselMarginLeft = parseInt(carousel.style.marginLeft);
@@ -39,11 +41,23 @@ previous.onmouseover = function(event) {
 previous.onmouseout = function(event) {
   this.style.opacity = "0.5";
 };
+slideshow.onmouseover = function(event) {
+  this.style.opacity = "0.2";
+};
+slideshow.onmouseout = function(event) {
+  this.style.opacity = "0.5";
+};
 
 // Create onclick events to advance the images
 next.onclick = function(event) {
+  clearInterval(carouselTimer);
   carouselForward();
 };
 previous.onclick = function(event) {
+  clearInterval(carouselTimer);
   carouselBackward();
+};
+slideshow.onclick = function(event) {
+  clearInterval(carouselTimer);
+  carouselTimer = window.setInterval(carouselForward, delayMs);
 };
